@@ -603,7 +603,7 @@ create_final_CSV <-
     return(final_output)
   }
 
-TG_conservativity <- function(alignment, grouping_method = NULL) {
+Escore_conservativity <- function(alignment, grouping_method = NULL) {
   if (is.null(grouping_method)) {
     var_aa = calculate_AA_variation(alignment, threshold = 0.01)
   }
@@ -637,10 +637,10 @@ TG_conservativity <- function(alignment, grouping_method = NULL) {
   part_con = pre_conservativity
 
   part_conserv = part_con / max(part_con)
-  TG = -(log(part_conserv))
-  TG[which(is.infinite(TG[1]))] = 0 # change Infs to 0
-  TG_score = (TG / max(TG))
-  return_data = TG_score
+  E = -(log(part_conserv))
+  E[which(is.infinite(E[1]))] = 0 # change Infs to 0
+  E_score = (E / max(E))
+  return_data = E_score
 
   return(return_data)
 }

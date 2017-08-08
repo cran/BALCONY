@@ -41,7 +41,7 @@ structure_index = indices$structureIndices
 structure=create_structure_seq(structure,uniprot,alignment)
 entropy_scores_list=list(
                         Schneider_entropy = schneider_conservativity(alignment),
-                        TG_entropy = TG_conservativity(alignment)
+                        Escore_entropy = Escore_conservativity(alignment)
                         )
 structure_entropy=get_structures_entropy(structure_index, entropy_scores_list)
 
