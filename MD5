@@ -1,6 +1,6 @@
-d022b1fa9ca0cffc6112c00ff7b3021e *DESCRIPTION
-968c457bd0680bc74e0086d24d0c9f02 *NAMESPACE
-15767da6b81237da90253b4a932d1bee *R/BALCONYfunctions.R
+16f8dd1b918f2fbb85874f9a344956b9 *DESCRIPTION
+e0909b51118a5ff35575621642def0d4 *NAMESPACE
+4fc466d0aa33ee811d9819ada0cd1661 *R/BALCONYfunctions.R
 3e22b65408db10d4c0f4b29fdb247a63 *data/alignment.RData
 27b999107cbf5deadc025f99b37bf993 *data/gonnet.RData
 170ac16ae5e899176cdc66efe18c9917 *data/small_alignment.RData
@@ -10,6 +10,7 @@ b87d088fff83867b4c6f0dcc810dcd59 *inst/extdata/GONNET.txt
 1239886e59b3fc4aaa7b847ad901e9f6 *inst/extdata/T1_4JNC.structure
 d6560e11c4be6855f63b01724f1c3826 *inst/extdata/T2_4JNC.structure
 cab53fc783da05613ef0935284d3f269 *inst/extdata/T3_4JNC.structure
+2b709dd141b93b910c1c001d3ce6f31d *inst/extdata/aln2_312_pro.fasta
 f927655757890b4b988e511bc48db948 *man/D_matrix.Rd
 78024b1b00e734be968349910b86ead3 *man/Escore_conservativity.Rd
 6f04cf3021c08c543208a9faec62aa66 *man/aligned_sequences_matrix2groups.Rd

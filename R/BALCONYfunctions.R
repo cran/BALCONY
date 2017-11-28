@@ -4,7 +4,9 @@
 
 
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("sequence","gonnet"))
+
+if (getRversion() >= "2.15.1")
+  utils::globalVariables(c("sequence", "gonnet"))
 
 # Conservation analysis ---------------------------------------------------
 read_structure <- function(file_names) {
@@ -84,7 +86,7 @@ consensus <-  function(alignment, threshold) {
 
   for (i in seq(1, count_cols)) {
     #temp = seqinr::s2c(alignment_matrix[i])
-    temp = alignment_matrix[i, ]
+    temp = alignment_matrix[i,]
     for (j in vec) {
       mat[i, j] = temp[j]
     }
@@ -234,39 +236,39 @@ aligned_sequences_matrix2groups <-
         }
       }
     }
-      if (grouping_method == 'aromaticity') {
-        for (i in seq(1, rows)) {
-          #Dividing AAs into groups of similar AAs in the matrices (according to the aromaricity)
-          for (j in seq(1, cols)) {
-            if (aligned_sequences_matrix[i, j] == "F" ||
-                aligned_sequences_matrix[i, j] == "W" ||
-                aligned_sequences_matrix[i, j] == "H" ||
-                aligned_sequences_matrix[i, j] == "Y")
-              #AROMATIC
-              aligned_sequences_matrixG[i, j] = "G1"
-              #NON-AROMATIC
-            if (aligned_sequences_matrix[i, j] == "R" ||
-                aligned_sequences_matrix[i, j] == "E" ||
-                aligned_sequences_matrix[i, j] == "I" ||
-                aligned_sequences_matrix[i, j] == "L" ||
-                aligned_sequences_matrix[i, j] == "K" ||
-                aligned_sequences_matrix[i, j] == "M" ||
-                aligned_sequences_matrix[i, j] == "Q" ||
-                aligned_sequences_matrix[i, j] == "V" ||
-                aligned_sequences_matrix[i, j] == "C" ||
-                aligned_sequences_matrix[i, j] == "D" ||
-                aligned_sequences_matrix[i, j] == "N" ||
-                aligned_sequences_matrix[i, j] == "T" ||
-                aligned_sequences_matrix[i, j] == "P" ||
-                aligned_sequences_matrix[i, j] == "A" ||
-                aligned_sequences_matrix[i, j] == "G" ||
-                aligned_sequences_matrix[i, j] == "S")
-            aligned_sequences_matrixG[i, j] = "G2"
-          }
+    if (grouping_method == 'aromaticity') {
+      for (i in seq(1, rows)) {
+        #Dividing AAs into groups of similar AAs in the matrices (according to the aromaricity)
+        for (j in seq(1, cols)) {
+          if (aligned_sequences_matrix[i, j] == "F" ||
+              aligned_sequences_matrix[i, j] == "W" ||
+              aligned_sequences_matrix[i, j] == "H" ||
+              aligned_sequences_matrix[i, j] == "Y")
+            #AROMATIC
+            aligned_sequences_matrixG[i, j] = "G1"
+          #NON-AROMATIC
+          if (aligned_sequences_matrix[i, j] == "R" ||
+              aligned_sequences_matrix[i, j] == "E" ||
+              aligned_sequences_matrix[i, j] == "I" ||
+              aligned_sequences_matrix[i, j] == "L" ||
+              aligned_sequences_matrix[i, j] == "K" ||
+              aligned_sequences_matrix[i, j] == "M" ||
+              aligned_sequences_matrix[i, j] == "Q" ||
+              aligned_sequences_matrix[i, j] == "V" ||
+              aligned_sequences_matrix[i, j] == "C" ||
+              aligned_sequences_matrix[i, j] == "D" ||
+              aligned_sequences_matrix[i, j] == "N" ||
+              aligned_sequences_matrix[i, j] == "T" ||
+              aligned_sequences_matrix[i, j] == "P" ||
+              aligned_sequences_matrix[i, j] == "A" ||
+              aligned_sequences_matrix[i, j] == "G" ||
+              aligned_sequences_matrix[i, j] == "S")
+          aligned_sequences_matrixG[i, j] = "G2"
         }
       }
+    }
     return(aligned_sequences_matrixG)
-}
+  }
 
 cons2seqs_sim <-
   function(grouped_alignment,
@@ -280,7 +282,7 @@ cons2seqs_sim <-
 
     for (i in seq(from = 1, to = row_no, by = 1)) {
       true_percentage_G[i] = length(which((
-        consensusG == (aligned_sequences_matrixG[i, ])
+        consensusG == (aligned_sequences_matrixG[i,])
       ) == TRUE)) / col_no
       # true percentage calculation (number of the same AAs in consensus (grouped AAs) and in each sequence/number of all AAs)
     }
@@ -355,8 +357,8 @@ calculate_AA_variation <-
     output = matrix("-", size[1] * 2, size[2])
     j = 1
     for (i in seq(1, size[1] * 2, 2)) {
-      output[i, ] = keyaas[j, ]
-      output[i + 1, ] = keyaas_per[j, ]
+      output[i,] = keyaas[j,]
+      output[i + 1,] = keyaas_per[j,]
       j = j + 1
     }
 
@@ -496,7 +498,7 @@ exclude_low_probability_structures <-
   function(structure, threshold) {
     if (length(structure) == 3) {
       for (i in seq(1, dim(structure[[3]])[1], by = 1)) {
-        to_exclude = which(structure[[3]][i,] < threshold)
+        to_exclude = which(structure[[3]][i, ] < threshold)
         structure[[3]][i, to_exclude] = NaN
         structure[[1]][i, to_exclude] = "N"
       }
@@ -545,7 +547,7 @@ create_final_CSV <-
            sequence_id,
            alignment,
            score_list = NULL) {
-    sequence = seqinr::s2c(find_seq(sequence_id, alignment))
+    sequence = seqinr::s2c(find_seq(sequence_id, alignment)[[1]])
     structure_output = rbind(structure$structure_matrix, structure$structure_numbers)
     structure_output_names = append(rownames(structure$structure_matrix), "Structure numbers")
     rownames(structure_output) = structure_output_names
@@ -566,7 +568,7 @@ create_final_CSV <-
       scores_mtx_names = c()
 
       for (i in seq(1, length(score_list))) {
-        scores_mtx[i, ] = score_list[[i]]
+        scores_mtx[i,] = score_list[[i]]
         scores_mtx_names[i] = names(score_list)[i]
 
       }
@@ -603,47 +605,46 @@ create_final_CSV <-
     return(final_output)
   }
 
-Escore_conservativity <- function(alignment, grouping_method = NULL) {
-  if (is.null(grouping_method)) {
-    var_aa = calculate_AA_variation(alignment, threshold = 0.01)
-  }
-  else{
-    var_aa = calculate_AA_variation(
-      alignment,
-      threshold = 0.01,
-      grouped = T,
-      grouping_method = grouping_method
-    )
-  }
-  max_cons = c()
-
-  for (i in seq(1, length(var_aa$matrix[1, ]), 1)) {
-    if (is.na(as.numeric(var_aa$matrix[2, i])) == FALSE) {
-      max_cons[i] = as.numeric(var_aa$matrix[2, i])
+Escore_conservativity <-
+  function(alignment, grouping_method = NULL) {
+    if (is.null(grouping_method)) {
+      var_aa = calculate_AA_variation(alignment, threshold = 0.01)
+    } else {
+      var_aa = calculate_AA_variation(
+        alignment,
+        threshold = 0.01,
+        grouped = T,
+        grouping_method = grouping_method
+      )
     }
+    max_cons = c()
+
+    for (i in seq(1, length(var_aa$matrix[1, ]), 1)) {
+      if (is.na(as.numeric(var_aa$matrix[2, i])) == FALSE) {
+        max_cons[i] = as.numeric(var_aa$matrix[2, i])
+      }
+    }
+    AA = which(max_cons != 0)
+
+    ile_var = c()
+
+    for (i in seq(1, dim(var_aa$AA)[2], 1)) {
+      ile_var[i] = length(which(var_aa$AA[, i] != "n" &
+                                  var_aa$AA[, i] != "-"))
+    }
+    pre_conservativity = max_cons / ile_var
+
+    pre_conservativity[which(is.na(pre_conservativity))] = 0
+    part_con = pre_conservativity
+    part_con[which(is.infinite(part_con))] = 0
+    part_conserv = part_con / max(part_con)
+    E = -(log(part_conserv))
+    E[which(is.infinite(E))] = 0 # change Infs to 0
+    E_score = (E / max(E))
+    return_data = E_score
+
+    return(return_data)
   }
-  AA = which(max_cons != 0)
-
-  ile_var = c()
-
-  for (i in seq(1, dim(var_aa$AA)[2], 1)) {
-    ile_var[i] = length(which(var_aa$AA[, i] != "n" &
-                                var_aa$AA[, i] != "-"))
-  }
-  pre_conservativity = max_cons / ile_var
-
-  pre_conservativity[which(is.na(pre_conservativity))] = 0
-  # change NaNs to 0
-  part_con = pre_conservativity
-
-  part_conserv = part_con / max(part_con)
-  E = -(log(part_conserv))
-  E[which(is.infinite(E[1]))] = 0 # change Infs to 0
-  E_score = (E / max(E))
-  return_data = E_score
-
-  return(return_data)
-}
 
 kabat_conservativity <- function(alignment) {
   if (!is.matrix(alignment)) {
@@ -749,8 +750,8 @@ substitution_mtx <- function (matrix_name) {
   # into a list of alphabet (the range of letters in matrix) and
   # mtx(valuse into substitution matrix)
   matrix = read.table(matrix_name)
-  mtx = matrix[-1, -1]
-  alphabet = as.character(unlist(matrix[1, -1]))
+  mtx = matrix[-1,-1]
+  alphabet = as.character(unlist(matrix[1,-1]))
   sub_mtx = list(names = alphabet, matrix = mtx)
   return(sub_mtx)
 }
@@ -779,14 +780,14 @@ D_matrix <- function(substitution_matrix) {
 landgraf_conservativity <-
   function(matrix_name = NULL, alignment, weights) {
     if (is.null(matrix_name)) {
-    #data("gonnet")
+      #data("gonnet")
       gonnet = BALCONY::gonnet
       pre_dissim_mtx = gonnet
-    }
-    else{
+    }else{
       pre_dissim_mtx = substitution_mtx(matrix_name)
     }
     aligned_sequences_matrix = alignment2matrix(alignment = alignment)
+    aligned_sequences_matrix = toupper(aligned_sequences_matrix)
     dissim_mtx = D_matrix(pre_dissim_mtx)
     conservation = rep(NaN, dim(aligned_sequences_matrix)[2])
     status = 0
@@ -816,6 +817,7 @@ landgraf_conservativity <-
         }
       }
       conservation[rep] = global_sum / length(column)
+
 
       if (round((rep / dim(aligned_sequences_matrix)[2]) * 100) != status) {
         print(paste("Position: ", rep, ", ", round((
@@ -923,9 +925,9 @@ create_structure_seq <-
     probability_output = matrix(NaN, count, struc_length)
     v = seq(1, count, by = 1)
     for (i in v) {
-      struct_output[i,] = structure[[i]]
+      struct_output[i, ] = structure[[i]]
       if (prob_data == T) {
-        probability_output[i,] = probability[[i]]
+        probability_output[i, ] = probability[[i]]
       }
     }
     nr_stru = rep("-", length(structure[[1]]))
@@ -1013,10 +1015,10 @@ get_structures_idx <- function(structure) {
   structure = structure$structure_matrix
   stru_index = list()
   for (i in seq(1:length(structure[, 1]))) {
-    stru_index[[i]] = which(structure[i,] == "S")
+    stru_index[[i]] = which(structure[i, ] == "S")
 
   }
-  whole_prot = which(structure[1,] != "-")
+  whole_prot = which(structure[1, ] != "-")
 
   out = list(proteinIndices = whole_prot, structureIndices = stru_index)
   names(out[[2]]) = rownames(structure)
@@ -1104,7 +1106,7 @@ get_structures_entropy <- function(structure_index, score_list) {
     lengths[[i]] = length(t_index[[i]])
     output = matrix(NA, nrow = length(score_list), ncol = lengths[[i]])
     for (j in seq(1:length(score_list))) {
-      output[j,] = score_list[[j]][t_index[[i]]]
+      output[j, ] = score_list[[j]][t_index[[i]]]
     }
     rownames(output) <- names(score_list)
     Entropy[[i]] = output
@@ -1122,11 +1124,11 @@ prepare_structure_profile <-
     names <- rownames(structure[[1]])
     for (i in seq(1, length(structure[[1]][, 1]))) {
       StruEnt = list(entropy = c(), idx = c())
-      StruEnt$idx = as.numeric(structure[[2]][which(structure[[1]][i,] ==
+      StruEnt$idx = as.numeric(structure[[2]][which(structure[[1]][i, ] ==
                                                       "S")])
       entropy_mtx = matrix(NaN, nrow = score_count, ncol = length(StruEnt$idx))
       for (j in seq(1, score_count)) {
-        entropy_mtx[j,] = structure_entropy[[i]][j, ]
+        entropy_mtx[j, ] = structure_entropy[[i]][j,]
       }
       rownames(entropy_mtx) <- rownames(structure_entropy[[1]])
       StruEnt$entropy = entropy_mtx
@@ -1169,6 +1171,12 @@ plot_structure_on_protein <-
         legend_pos = "bottomleft"
       }
       for (i in seq(1, length(score_names))) {
+        if(isRStudio <- Sys.getenv("RSTUDIO") == "1"){
+
+        }else{
+          #X11()
+          dev.new()
+        }
         plot(
           protein_entropy[[i]],
           col = "black",
@@ -1180,10 +1188,11 @@ plot_structure_on_protein <-
           ylab = 'Entropy'
         )
         for (j in seq(1, StruLen)) {
+
           par(new = T)
           plot(
             structure_profiles[[j]][[2]],
-            structure_profiles[[j]][[1]][i,],
+            structure_profiles[[j]][[1]][i, ],
             col = colors[[j]],
             main = "",
             pch = j,
@@ -1192,7 +1201,6 @@ plot_structure_on_protein <-
             xlab = '',
             ylab = ''
           )
-        }
         legend(
           legend_pos,
           c(pdb_name, structure_names),
@@ -1201,14 +1209,12 @@ plot_structure_on_protein <-
           lwd = c(2.5, 2.5),
           col = c("black", colors)
         )
-
-
       }
-    }
-    else
+      }
+      }else{
       print("The lists contain different number of conservation/entropy scores!")
   }
-
+}
 compare_cons_metrics <-
   function(protein_entropy,
            structure_profile,
@@ -1224,6 +1230,7 @@ compare_cons_metrics <-
     for (i in seq(1, metrics_count)) {
       for (j in seq(1, metrics_count)) {
         if (i != j) {
+          if(isRStudio <- Sys.getenv("RSTUDIO") == "1"){
           plot(
             protein_entropy[[i]],
             protein_entropy[[j]],
@@ -1243,8 +1250,8 @@ compare_cons_metrics <-
           for (k in seq(1, structures_count)) {
             par(new = T)
             plot(
-              structure_profile[[k]][[1]][i,],
-              structure_profile[[k]][[1]][j,],
+              structure_profile[[k]][[1]][i, ],
+              structure_profile[[k]][[1]][j, ],
               col = alpha(colors[k], 0.7),
               pch = k,
               main = "",
@@ -1260,6 +1267,46 @@ compare_cons_metrics <-
             pch = c(20, seq(1, k)),
             col = scales::alpha(c("slategray", colors), 0.5)
           )
+          }else{
+            #X11()
+            dev.new()
+            plot(
+              protein_entropy[[i]],
+              protein_entropy[[j]],
+              main = paste(
+                'Scatterplot of',
+                names(protein_entropy)[i],
+                "vs. ",
+                names(protein_entropy)[j]
+              ),
+              xlim = c(0, 1),
+              ylim = c(0, 1),
+              xlab = names(protein_entropy)[i],
+              ylab = names(protein_entropy)[j],
+              pch = 20,
+              col = alpha("slategray", 0.5)
+            )
+            for (k in seq(1, structures_count)) {
+              par(new = T)
+              plot(
+                structure_profile[[k]][[1]][i, ],
+                structure_profile[[k]][[1]][j, ],
+                col = alpha(colors[k], 0.7),
+                pch = k,
+                main = "",
+                xlim = c(0, 1),
+                ylim = c(0, 1),
+                xlab = "",
+                ylab = ""
+              )
+            }
+            legend(
+              'bottomright',
+              c(pdb_name, structure_names),
+              pch = c(20, seq(1, k)),
+              col = scales::alpha(c("slategray", colors), 0.5)
+            )
+          }
         }
       }
     }
@@ -1288,7 +1335,7 @@ kolmogorov_smirnov_test <-
     for (i in seq(1, metrics_count)) {
       for (j in seq(1, structures_count)) {
         reference = protein_entropy[[i]][-c(range, structure_entropy[[j]][[2]])]
-        temp = structure_entropy[[j]][[1]][i, ]
+        temp = structure_entropy[[j]][[1]][i,]
         pval_mtx[i, j] = stats::ks.test(reference, temp, alternative = alt_hip)$p.value
       }
     }
@@ -1300,7 +1347,7 @@ kolmogorov_smirnov_test <-
         for (j in seq(1, structures_count)) {
           reference = protein_entropy[[i]][-c(range, structure_entropy[[j]][[2]])]
           cumulative_distribution = stats::ecdf(reference)
-          temp = ecdf(structure_entropy[[j]][[1]][i, ])
+          temp = ecdf(structure_entropy[[j]][[1]][i,])
           plot(
             cumulative_distribution,
             xlim = c(0, 1),
