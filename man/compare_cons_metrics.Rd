@@ -32,14 +32,10 @@ data("alignment")
 alignment = delete_isoforms(alignment)
 data("structure")
 uniprot="P34913"
-#pdb_path = system.file("extdata", "1cqz.pdb", package = "BALCONY") #A string with path to PDB file
-#chain_identifier = "B"
-#tunnel=create_structure_seq(structure,uniprot,alignment,pdb_path,chain_identifier)
 indices=get_structures_idx(structure)
 protein_index = indices$proteinIndices
 structure_index = indices$structureIndices
-structure=create_structure_seq(structure,uniprot,alignment)
-entropy_scores_list=list(
+\donttest{entropy_scores_list=list(
                         Schneider_entropy = schneider_conservativity(alignment),
                         Escore_entropy = Escore_conservativity(alignment)
                         )
@@ -48,6 +44,6 @@ structure_entropy=get_structures_entropy(structure_index, entropy_scores_list)
 structure_profile = prepare_structure_profile(structure, structure_entropy)
 protein_entropy=get_prot_entropy(protein_index, entropy_scores_list)
 compare_cons_metrics(protein_entropy, structure_profile, "1CQZ")
-
+}
 }
 
