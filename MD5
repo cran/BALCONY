@@ -1,6 +1,6 @@
-769169a0a14356208008303f2cdc8e94 *DESCRIPTION
+f6764272c459c13e174623480ffacb53 *DESCRIPTION
 a5c90a25bb627e58e61d388be3b16494 *NAMESPACE
-79cac630a15e8c9b7c84422510351bf6 *R/BALCONYfunctions.R
+00ee6d4b64184fbc8324aa006b4a271f *R/BALCONYfunctions.R
 3e22b65408db10d4c0f4b29fdb247a63 *data/alignment.RData
 27b999107cbf5deadc025f99b37bf993 *data/gonnet.RData
 28bce39c0b56b43fecc7e4eda8ffe7f5 *data/small_alignment.RData
@@ -34,6 +34,7 @@ f8e41476cbc423cc718dfcc994a3809f *man/delete_isoforms.Rd
 5b09b7426645baf144874f0ead52343c *man/find_consecutive_seq.Rd
 b4616bc7ce792d67d9d3cdf6bde0d93f *man/find_seq.Rd
 5046edec7779cac3a2787299440d8dfc *man/find_seqid.Rd
+83960a205bf2ea09985c8ec5932f288e *man/get_pos_based_seq_weights.Rd
 249af84fbf53c80e4ab8dccf7302468f *man/get_prot_entropy.Rd
 18b7ef1ce51f8ac9d7998710b0bd3d8a *man/get_remarks465_pdb.Rd
 4fc0c4a0f5c09454ee2e48445d73834d *man/get_seq_names.Rd
