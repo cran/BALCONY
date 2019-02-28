@@ -24,9 +24,8 @@ D_matrix(substitution_matrix)
 
 \value{
 
- \item{distance}{A matrix of substitution probablities for all amino acids }
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+ \item{distance}{A matrix of substitution probablities for all amino acids}
+
 }
 \author{
 Alicja Pluciennik & Michal Stolarczyk

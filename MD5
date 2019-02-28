@@ -1,6 +1,7 @@
-f6764272c459c13e174623480ffacb53 *DESCRIPTION
+b16404d9de28549444d5f734afa660af *DESCRIPTION
 a5c90a25bb627e58e61d388be3b16494 *NAMESPACE
-00ee6d4b64184fbc8324aa006b4a271f *R/BALCONYfunctions.R
+984193cb042de1c03bfe8bc5b1068d2c *R/BALCONYfunctions.R
+dca37e76eb5117355d736afb1e45e9e4 *README.md
 3e22b65408db10d4c0f4b29fdb247a63 *data/alignment.RData
 27b999107cbf5deadc025f99b37bf993 *data/gonnet.RData
 28bce39c0b56b43fecc7e4eda8ffe7f5 *data/small_alignment.RData
@@ -12,7 +13,7 @@ d6560e11c4be6855f63b01724f1c3826 *inst/extdata/T2_4JNC.structure
 cab53fc783da05613ef0935284d3f269 *inst/extdata/T3_4JNC.structure
 2b709dd141b93b910c1c001d3ce6f31d *inst/extdata/aln2_312_pro.fasta
 4194b4e83f110275cf2c826806a0921f *man/CRE_conservativity.Rd
-f927655757890b4b988e511bc48db948 *man/D_matrix.Rd
+87dd9f060620b864b9ea6b57f7388302 *man/D_matrix.Rd
 6f9bc32bd413e0d8886e8380d15e74a8 *man/Escore_conservativity.Rd
 c5936a277de81f27c17e310abc3ebbbc *man/RealValET_conservativity.Rd
 376f22537e34852aaac8136069923598 *man/align_params.Rd
@@ -38,7 +39,7 @@ b4616bc7ce792d67d9d3cdf6bde0d93f *man/find_seq.Rd
 249af84fbf53c80e4ab8dccf7302468f *man/get_prot_entropy.Rd
 18b7ef1ce51f8ac9d7998710b0bd3d8a *man/get_remarks465_pdb.Rd
 4fc0c4a0f5c09454ee2e48445d73834d *man/get_seq_names.Rd
-3a3882f39d629a8add6710edfadb61b6 *man/get_seq_weights.Rd
+9d7eaf7f6a301fa3ebc5fed948bde6b1 *man/get_seq_weights.Rd
 e8f5e0db82e9fd76560746b327505c3b *man/get_structures_entropy.Rd
 11e9d7179d83163fb54d221be9d97cc2 *man/get_structures_idx.Rd
 9a5d290ff3954bb283e7c6a6340e2c8d *man/gonnet.Rd
